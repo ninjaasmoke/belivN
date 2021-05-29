@@ -13,13 +13,17 @@ body {
   color: var(--color);
   padding: 0;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 h1, h2, h3, h4, h5 {
   color: var(--accent);
-  text-decoration: none;
   font-family: 'Comfortaa', cursive;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 * {
@@ -28,4 +32,4 @@ h1, h2, h3, h4, h5 {
   padding: 0;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Manrope&display=swap');

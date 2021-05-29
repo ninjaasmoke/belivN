@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import navStyles from './nav.module.css'
 
 export default function Nav() {
@@ -5,9 +6,9 @@ export default function Nav() {
         <nav className={navStyles.nav}>
             <h1>beliv</h1>
             <ul>
-                <li>Home</li>
-                <li>Home</li>
-                <li>Home</li>
+                <Link href="/">Home</Link>
+                <Link href="/">Home</Link>
+                <Link href="/">Home</Link>
             </ul>
         </nav>
     )

@@ -1,0 +1,40 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.login {
+    background-color: var(--sec);
+    border-radius: 8px;
+    padding: 44px 40px;
+    width: 400px;
+    min-height: 424px;
+}
+
+.welcome {
+    font-size: 27px;
+    color: var(--color);
+    font-family: 'Poppins', sans-serif;
+}
+
+.desc {
+    margin: 20px 0;
+    font-size: 15px;
+}
+
+.desc span {
+    color: var(--accent);
+}
+
+@media (max-width: 400px) {
+    .login {
+        width: 100%;
+        border-radius: 0;
+    }
+}

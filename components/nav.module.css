@@ -16,3 +16,8 @@
     display: flex;
     list-style: none;
 }
+
+.nav ul a {
+    margin-left: 20px;
+    cursor: pointer;
+}
