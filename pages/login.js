@@ -1,17 +1,30 @@
 import styles from '../styles/Login.module.css'
 import { GoogleLogin } from 'react-google-login';
+import { useAppcontext } from '../context/AppContext';
 import Link from 'next/link'
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 export default function Login() {
 
+    const router = useRouter();
+    const { userData, setUserData } = useAppcontext();
+
     function signInSuccess(response) {
-        console.log(response.profileObj);
+        setUserData(response.profileObj);
+        router.replace('/')
     }
 
     function signInFailue(response) {
         console.log(response);
         alert('Login failed!');
     }
+
+    useEffect(() => {
+        if (userData.name !== '') {
+            router.replace('/');
+        }
+    }, [])
 
     return (
         <div className={styles.container}>
