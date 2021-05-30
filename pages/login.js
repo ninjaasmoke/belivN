@@ -13,12 +13,12 @@ export default function Login() {
 
     function signInSuccess(response) {
         setUserData(response.profileObj);
-        setCookie('name', userData.name, 7);
-        setCookie('googleId', userData.googleId, 7);
-        setCookie('imageUrl', userData.imageUrl, 7);
-        setCookie('email', userData.email, 7);
-        setCookie('givenName', userData.givenName, 7);
-        setCookie('familyName', userData.familyName, 7);
+        setCookie('name', response.profileObj.name, 7);
+        setCookie('googleId', response.profileObj.googleId, 7);
+        setCookie('imageUrl', response.profileObj.imageUrl, 7);
+        setCookie('email', response.profileObj.email, 7);
+        setCookie('givenName', response.profileObj.givenName, 7);
+        setCookie('familyName', response.profileObj.familyName, 7);
         router.replace('/');
     }
 
