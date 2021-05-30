@@ -4,6 +4,7 @@ import { useAppcontext } from '../context/AppContext';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { setCookie } from '../helper/cookies';
 
 export default function Login() {
 
@@ -12,7 +13,13 @@ export default function Login() {
 
     function signInSuccess(response) {
         setUserData(response.profileObj);
-        router.replace('/')
+        setCookie('name', userData.name, 7);
+        setCookie('googleId', userData.googleId, 7);
+        setCookie('imageUrl', userData.imageUrl, 7);
+        setCookie('email', userData.email, 7);
+        setCookie('givenName', userData.givenName, 7);
+        setCookie('familyName', userData.familyName, 7);
+        router.replace('/');
     }
 
     function signInFailue(response) {
@@ -39,7 +46,7 @@ export default function Login() {
                     onSuccess={signInSuccess}
                     onFailure={signInFailue}
                     cookiePolicy="single_host_origin"
-                    // isSignedIn={true}
+                    isSignedIn={true}
                     render={renderProps => (
                         <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.loginB}>
                             <img src="./images/g_icon.png" alt="Google Icon" className={styles.loginI} /> Log in with Google
