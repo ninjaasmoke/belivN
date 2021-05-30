@@ -1,20 +1,32 @@
 import styles from '../styles/Login.module.css'
 import { GoogleLogin } from 'react-google-login';
+import Link from 'next/link'
 
 export default function Login() {
+
+    function signInSuccess(response) {
+        console.log(response.profileObj);
+    }
+
+    function signInFailue(response) {
+        console.log(response);
+        alert('Login failed!');
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.login}>
                 <h1 className={styles.welcome}>Welcome</h1>
                 <p className={styles.desc}>
-                    Please login to use <span>beliv</span>.
+                    Please login to use <span>beliv</span>. <br /> <br />
+                    By loggin in you are agreeing to our <Link href="privacy"><a>Privacy Policy</a></Link> and <Link href="terms"><a>Terms of Service</a></Link>.
                 </p>
                 <GoogleLogin
                     clientId="422317457275-32trbdq50ku5hu36qr13b0oa9tb0cs8o.apps.googleusercontent.com"
-                    onSuccess={(resp) => { console.log(resp) }}
-                    onFailure={(resp) => { console.log(resp) }}
+                    onSuccess={signInSuccess}
+                    onFailure={signInFailue}
                     cookiePolicy="single_host_origin"
-                    isSignedIn={true}
+                    // isSignedIn={true}
                     render={renderProps => (
                         <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.loginB}>
                             <img src="./images/g_icon.png" alt="Google Icon" className={styles.loginI} /> Log in with Google
@@ -22,6 +34,13 @@ export default function Login() {
                     )}
                 />
             </div>
+            <footer className={styles.footer}>
+                <div className={styles.footerL}>beliv</div>
+                <div className={styles.footerM} />
+                <a href="https://github.com/ninjaasmoke/beliv" target="_blank" rel="noopener">
+                    <img src="./images/gh_icon.png" alt="GitHub Icon" className={styles.footerGH} />
+                </a>
+            </footer>
         </div>
     )
 }
