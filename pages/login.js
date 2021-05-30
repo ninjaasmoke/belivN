@@ -46,7 +46,7 @@ export default function Login() {
                     onSuccess={signInSuccess}
                     onFailure={signInFailue}
                     cookiePolicy="single_host_origin"
-                    isSignedIn={true}
+                    // isSignedIn={true}
                     render={renderProps => (
                         <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.loginB}>
                             <img src="./images/g_icon.png" alt="Google Icon" className={styles.loginI} /> Log in with Google
