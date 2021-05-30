@@ -24,7 +24,7 @@ export default function Login() {
 
     function signInFailue(response) {
         console.log(response);
-        alert('Login failed!');
+        alert(response.error);
     }
 
     useEffect(() => {
