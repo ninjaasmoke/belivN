@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: flex-start;
     height: 100%;
-    padding: 60px 0 0;
+    padding: 40px 0.5rem;
 }
 
 .profileCard {
@@ -59,7 +59,7 @@
 
 @media (max-width: 600px) {
     .container {
-        padding: 40px 12px;
+        padding: 0px 12px;
     }
     .profileCard {
         width: 100%;

@@ -8,7 +8,7 @@ export default function Nav() {
     const [showMenu, setShowMenu] = useState(false);
     return (
         <nav className={navStyles.nav}>
-            <h1>beliv</h1>
+            <Link href="/"><h1>beliv</h1></Link>
             <div className={navStyles.userD} onClick={() => setShowMenu(true)}>
                 <img src={userData.picture} alt="User Image" width={36} height={36} />
                 <span>{userData.given_name}</span>
