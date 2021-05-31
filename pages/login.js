@@ -12,6 +12,7 @@ export default function Login() {
     const { userData, setUserData } = useAppcontext();
 
     const provider = new firebase.auth.GoogleAuthProvider();
+    const ghProvider = new firebase.auth.GithubAuthProvider();
 
     function logInWithGoogle() {
         firebase.auth()
@@ -29,6 +30,14 @@ export default function Login() {
             }).catch(err => console.error(err));
     }
 
+    function logInWithGithub() { // error: only works if the user doesn't use google sign in
+        firebase.auth()
+            .signInWithPopup(ghProvider)
+            .then((res) => {
+                console.log(res)
+            }).catch(err => console.error(err));
+    }
+
     useEffect(() => {
         if (userData.name !== '') {
             router.replace('/');
@@ -43,9 +52,14 @@ export default function Login() {
                     Please login to use <span>beliv</span>. <br /> <br />
                     By loggin in you are agreeing to our <Link href="/privacy"><a>Privacy Policy</a></Link> and <Link href="/terms"><a>Terms of Service</a></Link>.
                 </p>
-                <button onClick={() => logInWithGoogle()} className={styles.loginB}>
-                    <img src="./images/g_icon.png" alt="Google Icon" className={styles.loginI} /> Log in with Google
+                <div className={styles.buttons} >
+                    <button onClick={() => logInWithGoogle()} className={styles.loginB}>
+                        <img src="./images/g_icon.png" alt="Google Icon" className={styles.loginI} /> Log in with Google
                 </button>
+                    {/* <button onClick={() => logInWithGithub()} className={styles.loginB}>
+                        <img src="./images/gh_icon.png" alt="Google Icon" className={styles.loginI} /> Log in with GitHub
+                </button> */}
+                </div>
             </div>
             <footer className={styles.footer}>
                 <div className={styles.footerL}>beliv</div>

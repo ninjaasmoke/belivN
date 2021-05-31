@@ -26,11 +26,11 @@ export default function AppWrapper({ children }) {
         firebase.initializeApp(firebaseConfig);
         setUserData({
             name: getCookie('name'),
-            googleId: getCookie('googleId'),
-            imageUrl: getCookie('imageUrl'),
+            googleId: getCookie('id'),
+            picture: getCookie('picture'),
             email: getCookie('email'),
-            givenName: getCookie('givenName'),
-            familyName: getCookie('familyName'),
+            givenName: getCookie('given_name'),
+            familyName: getCookie('family_name'),
         })
         const path = window.location.pathname;
         if (userData.name === '' && !path.includes('privacy') && !path.includes('terms')) {
