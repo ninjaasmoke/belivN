@@ -66,14 +66,14 @@
         min-height: 360px;
     }
     .profile {
-        height: 50%;
+        height: fit-content;
     }
     .profileImg {
         width: 92px;
         height: 92px;
-        bottom: 76%;
+        bottom: 70%;
     }
     .profileData {
-        padding: 60px 28px;
+        padding: 60px 28px 30px;
     }
 }
