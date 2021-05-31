@@ -70,7 +70,6 @@
     width: 100%;
     padding: 16px 18px;
     font-size: 14px;
-    /* font-family: 'Spartan', sans-serif; */
     cursor: pointer;
     display: flex;
     justify-content: flex-start;
@@ -98,7 +97,7 @@
         top: auto;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        padding: 12px 0 0;
+        padding: 12px 0;
         border: none;
     }
     .userD img {
@@ -106,6 +105,9 @@
     }
     .userD span {
         display: none;
+    }
+    .popUp ul li {
+        font-size: 17px;
     }
 
     @keyframes popUpAnim {

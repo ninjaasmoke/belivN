@@ -59,7 +59,7 @@
 
 @media (max-width: 600px) {
     .container {
-        padding: 0px 12px;
+        padding: 20px 12px;
     }
     .profileCard {
         width: 100%;
