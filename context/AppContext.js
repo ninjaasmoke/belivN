@@ -30,7 +30,7 @@ export default function AppWrapper({ children }) {
         }
         setUserData({
             name: getCookie('name'),
-            googleId: getCookie('id'),
+            id: getCookie('id'),
             picture: getCookie('picture'),
             email: getCookie('email'),
             given_name: getCookie('given_name'),
