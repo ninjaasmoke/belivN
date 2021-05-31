@@ -2,19 +2,22 @@ import styles from '../styles/Login.module.css'
 import { useAppcontext } from '../context/AppContext';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { setCookie } from '../helper/cookies';
 import firebase from 'firebase/app'
+import Spinner from '../components/spinner';
 
 export default function Login() {
 
     const router = useRouter();
     const { userData, setUserData } = useAppcontext();
+    const [showSpinner, setShowSpinner] = useState(false);
 
     const provider = new firebase.auth.GoogleAuthProvider();
     const ghProvider = new firebase.auth.GithubAuthProvider();
 
     function logInWithGoogle() {
+        setShowSpinner(true);
         firebase.auth()
             .signInWithPopup(provider)
             .then((res) => {
@@ -26,8 +29,9 @@ export default function Login() {
                 setCookie('email', userData.email, 7);
                 setCookie('given_name', userData.given_name, 7);
                 setCookie('family_name', userData.family_name, 7);
+                setShowSpinner(false);
                 router.replace('/');
-            }).catch(err => console.error(err));
+            }).catch(err => { console.error(err); setShowSpinner(false); });
     }
 
     function logInWithGithub() { // error: only works if the user doesn't use google sign in
@@ -46,6 +50,7 @@ export default function Login() {
 
     return (
         <div className={styles.container}>
+            <Spinner show={showSpinner} />
             <div className={styles.login}>
                 <h1 className={styles.welcome}>Welcome</h1>
                 <p className={styles.desc}>
