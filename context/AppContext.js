@@ -23,7 +23,11 @@ export default function AppWrapper({ children }) {
     const router = useRouter();
 
     useEffect(() => {
-        firebase.initializeApp(firebaseConfig);
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        } else {
+            firebase.app();
+        }
         setUserData({
             name: getCookie('name'),
             googleId: getCookie('id'),
@@ -33,7 +37,7 @@ export default function AppWrapper({ children }) {
             family_name: getCookie('family_name'),
         })
         const path = window.location.pathname;
-        if (getCookie('name') && getCookie('name').length !== 0 && !path.includes('privacy') && !path.includes('terms')) {
+        if (getCookie('name').length === 0 && !path.includes('privacy') && !path.includes('terms')) {
             router.replace('/login');
         }
     }, []);
