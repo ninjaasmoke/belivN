@@ -1,8 +1,8 @@
 export const User = {
     name: '',
-    googleId: '',
-    imageUrl: '',
+    id: '',
+    picture: '',
     email: '',
-    givenName: '',
-    familyName: '',
+    given_name: '',
+    family_name: '',
 }

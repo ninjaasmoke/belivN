@@ -29,8 +29,8 @@ export default function AppWrapper({ children }) {
             googleId: getCookie('id'),
             picture: getCookie('picture'),
             email: getCookie('email'),
-            givenName: getCookie('given_name'),
-            familyName: getCookie('family_name'),
+            given_name: getCookie('given_name'),
+            family_name: getCookie('family_name'),
         })
         const path = window.location.pathname;
         if (getCookie('name') && getCookie('name').length !== 0 && !path.includes('privacy') && !path.includes('terms')) {
