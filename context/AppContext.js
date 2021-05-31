@@ -33,7 +33,7 @@ export default function AppWrapper({ children }) {
             familyName: getCookie('family_name'),
         })
         const path = window.location.pathname;
-        if (userData.name === '' && !path.includes('privacy') && !path.includes('terms')) {
+        if (getCookie('name') && getCookie('name').length !== 0 && !path.includes('privacy') && !path.includes('terms')) {
             router.replace('/login');
         }
     }, []);
