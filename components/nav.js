@@ -8,8 +8,8 @@ export default function Nav() {
         <nav className={navStyles.nav}>
             <h1>beliv</h1>
             <div className={navStyles.userD}>
-                <img src={userData.imageUrl} alt="User Image" width={36} height={36} />
-                <span>{userData.givenName}</span>
+                <img src={userData.picture} alt="User Image" width={36} height={36} />
+                <span>{userData.given_name}</span>
             </div>
         </nav>
     )

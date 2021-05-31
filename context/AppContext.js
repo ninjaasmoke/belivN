@@ -2,15 +2,28 @@ import { useContext, createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { User } from './ContextTypes';
 import { getCookie } from '../helper/cookies';
+import firebase from "firebase/app";
+import "firebase/analytics";
+import "firebase/auth";
 
 const AppContext = createContext();
 
 export default function AppWrapper({ children }) {
     const [userData, setUserData] = useState(User);
+    const firebaseConfig = {
+        apiKey: "AIzaSyB6aH60VwZiSpQnnOvCK4t6PhE4weP9xDQ",
+        authDomain: "beliv-315217.firebaseapp.com",
+        projectId: "beliv-315217",
+        storageBucket: "beliv-315217.appspot.com",
+        messagingSenderId: "422317457275",
+        appId: "1:422317457275:web:bd4b69b6c6cbd543b787de",
+        measurementId: "G-SHZ1VK8RRZ"
+    }
 
     const router = useRouter();
 
     useEffect(() => {
+        firebase.initializeApp(firebaseConfig);
         setUserData({
             name: getCookie('name'),
             googleId: getCookie('googleId'),

@@ -1,30 +1,32 @@
 import styles from '../styles/Login.module.css'
-import { GoogleLogin } from 'react-google-login';
 import { useAppcontext } from '../context/AppContext';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { setCookie } from '../helper/cookies';
+import firebase from 'firebase/app'
 
 export default function Login() {
 
     const router = useRouter();
     const { userData, setUserData } = useAppcontext();
 
-    function signInSuccess(response) {
-        setUserData(response.profileObj);
-        setCookie('name', response.profileObj.name, 7);
-        setCookie('googleId', response.profileObj.googleId, 7);
-        setCookie('imageUrl', response.profileObj.imageUrl, 7);
-        setCookie('email', response.profileObj.email, 7);
-        setCookie('givenName', response.profileObj.givenName, 7);
-        setCookie('familyName', response.profileObj.familyName, 7);
-        router.replace('/');
-    }
+    const provider = new firebase.auth.GoogleAuthProvider();
 
-    function signInFailue(response) {
-        console.log(response);
-        alert(response.error);
+    function logInWithGoogle() {
+        firebase.auth()
+            .signInWithPopup(provider)
+            .then((res) => {
+                const userData = res.additionalUserInfo.profile;
+                setUserData(userData);
+                setCookie('name', userData.name, 7);
+                setCookie('id', userData.id, 7);
+                setCookie('picture', userData.picture, 7);
+                setCookie('email', userData.email, 7);
+                setCookie('given_name', userData.given_name, 7);
+                setCookie('family_name', userData.family_name, 7);
+                router.replace('/');
+            }).catch(err => console.error(err));
     }
 
     useEffect(() => {
@@ -39,20 +41,11 @@ export default function Login() {
                 <h1 className={styles.welcome}>Welcome</h1>
                 <p className={styles.desc}>
                     Please login to use <span>beliv</span>. <br /> <br />
-                    By loggin in you are agreeing to our <Link href="privacy"><a>Privacy Policy</a></Link> and <Link href="terms"><a>Terms of Service</a></Link>.
+                    By loggin in you are agreeing to our <Link href="/privacy"><a>Privacy Policy</a></Link> and <Link href="/terms"><a>Terms of Service</a></Link>.
                 </p>
-                <GoogleLogin
-                    clientId="422317457275-32trbdq50ku5hu36qr13b0oa9tb0cs8o.apps.googleusercontent.com"
-                    onSuccess={signInSuccess}
-                    onFailure={signInFailue}
-                    cookiePolicy="single_host_origin"
-                    // isSignedIn={true}
-                    render={renderProps => (
-                        <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.loginB}>
-                            <img src="./images/g_icon.png" alt="Google Icon" className={styles.loginI} /> Log in with Google
-                        </button>
-                    )}
-                />
+                <button onClick={() => logInWithGoogle()} className={styles.loginB}>
+                    <img src="./images/g_icon.png" alt="Google Icon" className={styles.loginI} /> Log in with Google
+                </button>
             </div>
             <footer className={styles.footer}>
                 <div className={styles.footerL}>beliv</div>
