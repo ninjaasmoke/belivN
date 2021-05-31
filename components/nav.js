@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import navStyles from './nav.module.css'
 import { useAppcontext } from '../context/AppContext'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function Nav() {
-    const { userData } = useAppcontext();
+    const { userData, logoutUser } = useAppcontext();
     const [showMenu, setShowMenu] = useState(false);
+    const [showLogout, setShowLogout] = useState(false);
     return (
         <nav className={navStyles.nav}>
             <Link href="/"><h1>beliv</h1></Link>
@@ -18,7 +19,18 @@ export default function Nav() {
                     <ul>
                         <Link href="/profile"><li><img src="./images/profile_icon.png" /> Profile</li></Link>
                         <Link href="/settings"><li><img src="./images/settings_icon.png" /> Settings</li></Link>
+                        <li className={navStyles.logout} onClick={() => setShowLogout(true)}><img src="./images/logout_icon.png" /> Logout</li>
                     </ul>
+                </div>
+            </div>
+            <div className={navStyles.popUpWrapper + " " + navStyles.logoutWrapper} style={{ display: showLogout ? 'block' : 'none' }}>
+                <div className={navStyles.logoutMenu}>
+                    Are you sure you want to log out?
+                        <span className={navStyles.cancel} onClick={() => setShowLogout(false)}>✕</span>
+                    <div className={navStyles.logoutButtons}>
+                        <button className={navStyles.logoutButton} onClick={() => logoutUser()} >Yes</button>
+                        <button className={navStyles.cancelButton} onClick={() => setShowLogout(false)}>Cancel</button>
+                    </div>
                 </div>
             </div>
         </nav>

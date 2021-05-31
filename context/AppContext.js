@@ -1,7 +1,7 @@
 import { useContext, createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { User } from './ContextTypes';
-import { getCookie } from '../helper/cookies';
+import { deleteAllCookies, getCookie } from '../helper/cookies';
 import firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/auth";
@@ -21,6 +21,12 @@ export default function AppWrapper({ children }) {
     }
 
     const router = useRouter();
+
+    function logoutUser() {
+        setUserData(User);
+        deleteAllCookies();
+        router.replace('/login');
+    }
 
     useEffect(() => {
         if (!firebase.apps.length) {
@@ -44,7 +50,8 @@ export default function AppWrapper({ children }) {
     return (
         <AppContext.Provider value={{
             userData,
-            setUserData
+            setUserData,
+            logoutUser
         }}
         >
             {children}
