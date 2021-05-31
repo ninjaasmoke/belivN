@@ -49,8 +49,7 @@
     position: fixed;
     min-width: 180px;
     right: 40px; 
-    /* min-height: 240px; */
-    /* padding-bottom: 4px; */
+    border: 1px solid var(--ter);
     background-color: var(--sec);
     border-radius: 8px;
     animation: popUpAnim 200ms forwards ease-out;
@@ -70,8 +69,8 @@
 .popUp ul li {
     width: 100%;
     padding: 16px 18px;
-    font-size: 12px;
-    font-family: 'Spartan', sans-serif;
+    font-size: 14px;
+    /* font-family: 'Spartan', sans-serif; */
     cursor: pointer;
     display: flex;
     justify-content: flex-start;
@@ -85,7 +84,6 @@
 .popUp img {
     width: 16px;
     height: 16px;
-    margin-bottom: 4px;
     margin-right: 12px;
 }
 
@@ -101,15 +99,13 @@
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         padding: 12px 0 0;
+        border: none;
     }
     .userD img {
         margin: 0;
     }
     .userD span {
         display: none;
-    }
-    .popUp ul li {
-        font-size: 14px;
     }
 
     @keyframes popUpAnim {
