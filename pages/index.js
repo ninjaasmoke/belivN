@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Nav from '../components/nav'
+import NewRoom from '../components/newRoom'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>beliv</title>
         <meta name="description" content="Be live with your friends." />
@@ -16,6 +16,7 @@ export default function Home() {
       <Nav />
 
       <main className={styles.container}>
+        <NewRoom />
       </main>
 
     </div>

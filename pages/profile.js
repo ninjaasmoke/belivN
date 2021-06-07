@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useAppcontext } from '../context/AppContext'
 import styles from '../styles/Profile.module.css'
 import { useRouter } from 'next/router'
@@ -7,6 +8,9 @@ export default function Profile() {
     const router = useRouter();
     return (
         <div className={styles.container}>
+            <Head>
+                <title>beliv | profile</title>
+            </Head>
             <div className={styles.profileCard}>
                 <img src="https://source.unsplash.com/800x280/?developer,coding,programmer,audio,music,party" className={styles.bgImg} />
                 <div className={styles.profile}>

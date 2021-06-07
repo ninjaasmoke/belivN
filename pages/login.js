@@ -1,6 +1,7 @@
 import styles from '../styles/Login.module.css'
 import { useAppcontext } from '../context/AppContext';
 import Link from 'next/link'
+import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { setCookie } from '../helper/cookies';
@@ -50,6 +51,9 @@ export default function Login() {
 
     return (
         <div className={styles.container}>
+            <Head>
+                <title>beliv | Login</title>
+            </Head>
             <Spinner show={showSpinner} />
             <div className={styles.login}>
                 <h1 className={styles.welcome}>Welcome</h1>
